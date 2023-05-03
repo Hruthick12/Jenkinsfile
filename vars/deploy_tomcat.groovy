@@ -1,4 +1,4 @@
-def deploy_tomcat(){
+def deploy_tomcat() {
 
     echo "deploying to tomcat server."
     sh '''
