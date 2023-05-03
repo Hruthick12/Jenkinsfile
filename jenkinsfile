@@ -1,0 +1,34 @@
+@Library('MyLibrary') _
+pipeline {
+    agent any
+    tools {
+        maven "Maven"
+    }
+    stages {
+        
+        stage('Hello World') {
+            steps {
+                script 
+                {
+                    helloworld.hello()
+                }
+            }
+        }
+
+        stage('Checkout code from Git.') {
+            steps {
+            
+            script{checkout_git.checkout_git("java-servlet-hello");
+            }
+            }
+            
+          stage('Triggering Aws Code build.') {
+            steps {
+            
+            script{
+            aws_codebuild.aws_codebuild("java-project");
+            }
+            }
+
+            
+            
