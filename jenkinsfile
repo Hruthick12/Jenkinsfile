@@ -29,6 +29,10 @@ pipeline {
             aws_codebuild.aws_codebuild("java-project");
             }
             }
+          }
+        }
+    }
+}
 
             
             
