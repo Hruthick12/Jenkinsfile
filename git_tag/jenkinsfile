@@ -1,18 +1,21 @@
+
 @Library('MyLibrary') _
 pipeline {
+    agent any
+    
     stages {
         
         stage('Checkout code from Git.') {
             steps {
             
-            script{checkout_git.checkout_git("Jenkinsfile")}
+                script{checkout_git.checkout_git("Jenkinsfile")}
             }
         }
 
         stage('create tag on git repo.') {
             steps {
             
-            script {create_tag.create_tag("${tag}")};
+                script {create_tag.create_tag("${tag}")}
             }
             }
         
