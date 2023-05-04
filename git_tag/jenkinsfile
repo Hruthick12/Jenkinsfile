@@ -7,17 +7,23 @@ pipeline {
         
         stage('Checkout code from Git.') {
             steps {
-            
-                script{checkout_git.checkout_git("Jenkinsfile", "main")}
+                
+                dir("tag_code"){
+                
+                script{checkout_git.checkout_git("java-hello-world-with-maven", "master")}
+            }
             }
         }
+        
 
         stage('create tag on git repo.') {
             steps {
             
+                dir("tag_code"){
                 script {create_tag.create_tag("${tag}")}
             }
             }
+        }
         
 }
 }       
