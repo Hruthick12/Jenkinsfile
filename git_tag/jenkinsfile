@@ -1,0 +1,21 @@
+@Library('MyLibrary') _
+pipeline {
+    stages {
+        
+        stage('Checkout code from Git.') {
+            steps {
+            
+            script{checkout_git.checkout_git("Jenkinsfile")}
+            }
+        }
+
+        stage('create tag on git repo.') {
+            steps {
+            
+            script {create_tag.create_tag()};
+            }
+            }
+        
+}
+}       
+            

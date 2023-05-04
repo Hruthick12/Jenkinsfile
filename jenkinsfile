@@ -18,9 +18,18 @@ pipeline {
         stage('Checkout code from Git.') {
             steps {
             
-            script{checkout_git.checkout_git("java-servlet-hello");
+            script{checkout_git.checkout_git("Jenkinsfile");
             }
             }
+        }
+
+            stage('create tag on git repo.') {
+            steps {
+            
+            script{checkout_git.checkout_git("Jenkinsfile")}
+            }
+        }
+            
             
           stage('Triggering Aws Code build.') {
             steps {
