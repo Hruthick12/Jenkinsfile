@@ -10,7 +10,7 @@ pipeline {
                 
                 dir("tag_code") {
                 
-                script{checkout_git.checkout_git("java-hello-world-with-maven", "master")}
+                script {checkout_git.checkout_git("java-hello-world-with-maven", "master")}
             }
             }
         }
