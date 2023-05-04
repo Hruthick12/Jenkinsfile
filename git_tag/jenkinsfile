@@ -12,7 +12,7 @@ pipeline {
         stage('create tag on git repo.') {
             steps {
             
-            script {create_tag.create_tag()};
+            script {create_tag.create_tag("${tag}")};
             }
             }
         
