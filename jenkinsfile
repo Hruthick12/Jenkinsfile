@@ -1,46 +1,41 @@
+
 @Library('MyLibrary') _
 pipeline {
     agent any
-    tools {
-        maven "Maven"
-    }
     stages {
-        
-        stage('Hello World') {
-            steps {
-                script 
-                {
-                    helloworld.hello()
-                }
-            }
-        }
 
         stage('Checkout code from Git.') {
             steps {
+                dir("spark-java-war-example")
+                {
             
-            script{checkout_git.checkout_git("Jenkinsfile");
-            }
+            script{checkout_git.checkout_git("spark-java-war-example", "master")}
             }
         }
-
+        }
             stage('create tag on git repo.') {
             steps {
+                dir("spark-java-war-example")
+                {
             
-            script{checkout_git.checkout_git("Jenkinsfile")}
+            script{checkout_git.checkout_git("${tag}")}
             }
         }
+            }
             
             
           stage('Triggering Aws Code build.') {
             steps {
+            dir("spark-java-war-example")
+                {
             
             script{
-            aws_codebuild.aws_codebuild("java-project");
-            }
+            aws_codebuild.aws_codebuild("java-project", "${tag}")}
             }
           }
         }
     }
+}
 
 
             
