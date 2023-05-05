@@ -1,3 +1,4 @@
+
 Library('MyLibrary') _
 pipeline {
     agent any
