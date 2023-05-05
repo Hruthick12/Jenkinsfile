@@ -35,7 +35,7 @@ pipeline {
                 dir("sparkjava-war-example")
                 {
                 
-                script {aws_codebuild.aws_codebuild("java-project")}
+                script {aws_codebuild.aws_codebuild("java-project", "${tag}")}
 
                 }                
                
