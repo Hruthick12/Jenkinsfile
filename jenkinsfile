@@ -1,42 +1,50 @@
-
-@Library('MyLibrary') _
+Library('MyLibrary') _
 pipeline {
     agent any
     stages {
 
-        stage('Checkout code from Git.') {
+        stage('Checkout code from Git') {
+            steps {  
+
+                dir("sparkjava-war-example")
+                {                             
+                                         
+                script {checkout_git.checkout_git("sparkjava-war-example", "master")}                
+                
+                }
+            }
+        }
+
+        stage('Create tag on Git Repo') {
+            steps { 
+
+                dir("sparkjava-war-example")
+                {                               
+                                         
+                script {create_tag.create_tag("${tag}")}                
+                
+                }
+            }
+        }
+
+        
+        stage('Trigger AWS Code Build') {
             steps {
+
                 dir("sparkjava-war-example")
                 {
-            
-            script{checkout_git.checkout_git("sparkjava-war-example", "master")}
+                
+                script {aws_codebuild.aws_codebuild("java-project")}
+
+                }                
+               
             }
         }
-        }
-            stage('create tag on git repo.') {
-            steps {
-                dir("sparkjava-war-example")
-                {
-            
-            script{checkout_git.checkout_git("${tag}")}
-            }
-        }
-            }
-            
-            
-          stage('Triggering Aws Code build.') {
-            steps {
-            dir("sparkjava-war-example")
-                {
-            
-            script{
-            aws_codebuild.aws_codebuild("java-project", "${tag}")}
-            }
-          }
-        }
+
+                       
+        
     }
+
 }
 
 
-            
-            
