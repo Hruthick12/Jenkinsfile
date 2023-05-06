@@ -2,6 +2,7 @@
 tag=$1
 env=$2
 
+echo "environment is $env"
 ls -lrtha
 pwd
 IP=`grep $env /var/lib/jenkins/workspace/java_deployment/shellscripts/env.properties | cut -d ':' -f2 |tr -d "[:space:]"`
