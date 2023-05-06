@@ -3,6 +3,7 @@ tag=$1
 env=$2
 
 ls -lrtha
+pwd
 IP=`grep $env env.properties | cut -d ':' -f2 |tr -d "[:space:]"`
 echo "ip is $IP"
 
