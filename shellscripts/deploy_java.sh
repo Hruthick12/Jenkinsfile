@@ -4,7 +4,7 @@ env=$2
 
 ls -lrtha
 pwd
-IP=`grep $env env.properties | cut -d ':' -f2 |tr -d "[:space:]"`
+IP=`grep $env /var/lib/jenkins/workspace/java_deployment/shellscripts/env.properties | cut -d ':' -f2 |tr -d "[:space:]"`
 echo "ip is $IP"
 
 mkdir /var/lib/jenkins/deploy
