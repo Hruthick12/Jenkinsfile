@@ -3,6 +3,7 @@ tag=$1
 env=$2
 
 IP=`grep $env env.properties | cut -d ':' -f2 |tr -d "[:space:]"`
+echo $IP
 
 mkdir /var/lib/jenkins/deploy
 cd /var/lib/jenkins/deploy
